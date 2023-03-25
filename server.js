@@ -4,7 +4,7 @@ import cors from "cors";
 import mongoose from "mongoose";
 import userRoute from "./routes/userRoutes.js";
 import {imageRoute} from './routes/imageRoutes.js'
-import path from "path";
+import * as path from "path";
 import * as dotenv from dotenv
 
 
