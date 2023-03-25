@@ -5,16 +5,18 @@ import mongoose from "mongoose";
 import userRoute from "./routes/userRoutes.js";
 import {imageRoute} from './routes/imageRoutes.js'
 import path from "path";
+import * as dotenv from dotenv
+
 
 
 
 
 const app = express();
-
+dotenv.config()
 
 const port = process.env.PORT || 5000;
 const connecturl =
-  "mongodb+srv://hameed381:Y16cs943@cluster0.l6plzgu.mongodb.net/christTheKing?retryWrites=true&w=majority";
+process.env.MONGO_URL ;
 mongoose
   .connect(connecturl, {
     useNewUrlParser: true,
@@ -23,10 +25,7 @@ mongoose
  
   
   
-  app.use(express.static(path.join(__dirname,'../client/build')))
-  app.get('*',(req,res)=>{
-    res.sendFile(path.join(__dirname,"../client/build/index.html"))
-  }) 
+ 
 app.use(bodyParser.json({ limit: "20mb", extended: true }));
 app.use(express.json());
 app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
@@ -36,7 +35,10 @@ app.use(cors({
 
 
 
-
+app.use(express.static(path.join(__dirname,'../client/build')))
+app.get('*',(req,res)=>{
+  res.sendFile(path.join(__dirname,"../client/build/index.html"))
+}) 
 app.use('/public',express.static('public'))
 app.use('/api',imageRoute)
 app.use("/api/users/", express.static('public'), userRoute);
