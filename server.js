@@ -17,6 +17,7 @@ const __dirname = path.resolve();
 const port = process.env.PORT;
 const connecturl =
 process.env.MONGO_URL ;
+mongoose.set('strictQuery',true)
 mongoose
   .connect(connecturl, {
     useNewUrlParser: true,
@@ -35,7 +36,7 @@ app.use(cors({
 
 
 
-app.use(express.static(path.join(__dirname,'../client/build')))
+app.use(express.static(path.join(__dirname,'../client/build/')))
 app.get('*',(req,res)=>{
   res.sendFile(path.join(__dirname,"../client/build/index.html"))
 }) 
