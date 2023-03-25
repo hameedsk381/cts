@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import userRoute from "./routes/userRoutes.js";
 import {imageRoute} from './routes/imageRoutes.js'
 import * as path from "path";
-import * as dotenv from dotenv
+import  dotenv from "dotenv"
 
 
 
@@ -14,7 +14,7 @@ import * as dotenv from dotenv
 const app = express();
 dotenv.config()
 
-const port = process.env.PORT || 5000;
+const port = process.env.PORT;
 const connecturl =
 process.env.MONGO_URL ;
 mongoose
